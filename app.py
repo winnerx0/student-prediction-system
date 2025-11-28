@@ -419,7 +419,7 @@ if df is not None:
 
             if dropout_risk == "At Risk":
                 st.warning(
-                    "⚠️ This student may need additional support and intervention."
+                    "This student may need additional support and intervention."
                 )
             else:
                 st.success("✓ This student is predicted to perform well.")
@@ -437,10 +437,10 @@ if df is not None:
         y_pred_xgb = xgb_model.predict(X_test_scaled)
         xgb_r2 = r2_score(y_test, y_pred_xgb)
 
-        st.subheader("🏆 Best Model Performance")
+        st.subheader("Best Model Performance")
         st.success(f"**XGBoost** achieved the best R² score of **{xgb_r2:.3f}**")
 
-        st.subheader("📊 Top 5 Influential Features")
+        st.subheader("Top 5 Influential Features")
         feature_importance = pd.DataFrame(
             {"Feature": X_encoded.columns, "Importance": rf_model.feature_importances_}
         ).sort_values("Importance", ascending=False)
@@ -448,7 +448,7 @@ if df is not None:
         for i, row in feature_importance.head(5).iterrows():
             st.write(f"{i+1}. **{row['Feature']}**: {row['Importance']:.4f}")
 
-        st.subheader("💡 Recommendations")
+        st.subheader("Recommendations")
         st.markdown(
             """
         **For Students At Risk:**
@@ -471,7 +471,7 @@ if df is not None:
         """
         )
 
-        st.subheader("📈 Model Interpretation with SHAP")
+        st.subheader("Model Interpretation with SHAP")
         st.info(
             "SHAP analysis helps understand which features influence predictions the most."
         )
